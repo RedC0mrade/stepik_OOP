@@ -1,4 +1,4 @@
-def inversions(sequence: list) -> int:
+def inversions(sequence: list[int]) -> int:
     count = 0
     for i in range(len(sequence) - 1):
         for j in range(i + 1, len(sequence)):
