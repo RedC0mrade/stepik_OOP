@@ -1,7 +1,5 @@
-def quantify(iterable, predicate) -> int:
-    return len(list(filter(predicate, iterable)))
+import sys
 
+text = [eval(i) for i in sys.stdin]
 
-numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-print(quantify(numbers, lambda x: x % 2 == 0))
+[print(-90 <= i[0] <= 90 and -180 <= i[1] <= 180) for i in text]
