@@ -1,16 +1,16 @@
 from datetime import date
 
-year = int(input())
+year = 2015
 
-mounth = int(input())
-same_date = []
-for day in range(1, 32):
-    try:
-        my_date = date(year, mounth, day)
+mounth = 2
+first_date = date(year, mounth, 25).weekday()
+print(first_date)
+print(date(year, mounth, 1 + abs(first_date-3) + 21).strftime('%d.%m.%y'))
 
-        if my_date.strftime('%A') == "Thursday":
-            same_date.append(my_date)
-    except ValueError:
-        break
-
-print(same_date[3].strftime('%d.%m.%y'))
+4 + 6
+5 + 5
+6 + 4
+7 + 3
+1 + 2
+2 + 1
+3 + 0
