@@ -1,16 +1,11 @@
 from datetime import date
 
-year = int(input())
 
-mounth = int(input())
-same_date = []
-for day in range(1, 32):
-    try:
-        my_date = date(year, mounth, day)
+def last_thursday(year: int, mounth: int) -> str:
+    my_date = date(year, mounth, 1)
+    first_thursday = (4 - my_date.isoweekday()) % 7
+    print(first_thursday)
+    return date(year, mounth, 1 + first_thursday + 21).strftime("%d.%m.%Y")
 
-        if my_date.strftime('%A') == "Thursday":
-            same_date.append(my_date)
-    except ValueError:
-        break
 
-print(same_date[3].strftime('%d.%m.%y'))
+print(last_thursday(int(input()), int(input())))
