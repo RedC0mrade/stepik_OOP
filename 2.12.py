@@ -1,0 +1,2 @@
+def intersperse(iterable, delimiter):
+    
