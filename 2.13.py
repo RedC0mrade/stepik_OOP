@@ -3,9 +3,13 @@ def annual_return(
     persent: int,
     years: int,
 ):
-    if years != 0:
-        yield annual_return(deposit=deposit, persent=persent, years=years-1)
-    yield deposit  / 11 / persent
 
+    for _ in range(years):
+       deposit = deposit * (100 + persent) / 100
+       yield deposit
+    
 for value in annual_return(120000, 10, 3):
+    print(round(value))
+
+for value in annual_return(70000, 8, 10):
     print(round(value))
