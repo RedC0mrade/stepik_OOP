@@ -1,6 +1,10 @@
 def pluck(data: dict, path: str, default=None):
 
     keys = path.split('.')
+    for key in keys:
+        dat = data.get(key)
+        if dat:
+            return pluck()
     return default
 
 # INPUT DATA:
