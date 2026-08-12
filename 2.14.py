@@ -1,63 +1,85 @@
+def find_key(data, keys: list, final=None):
+    if type(data) == dict:
+        if len(keys) <= 1:
+            return final
+        if not data.get(keys[0]):
+            return final
+        return find_key(
+            data=data.get(keys[0]), keys=keys[1, -1], final=data.get(keys[0])
+        )
+
+
 def pluck(data: dict, path: str, default=None):
 
-    keys = path.split('.')
+    keys = path.split(".")
     for key in keys:
         dat = data.get(key)
         if dat:
             return pluck()
     return default
 
+
 # INPUT DATA:
 
 # TEST_1:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'x'))
+print(pluck(d, "x"))
 
 # TEST_2:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'a.b'))
+print(pluck(d, "a.b"))
 
 # TEST_3:
-d = {'a': {'b': {'c': {'d': {'e': 4}}}}}
+d = {"a": {"b": {"c": {"d": {"e": 4}}}}}
 
-print(pluck(d, 'a.b.c'))
+print(pluck(d, "a.b.c"))
 
 # TEST_4:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'c.e'))
+print(pluck(d, "c.e"))
 
 # TEST_5:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'c'))
+print(pluck(d, "c"))
 
 # TEST_6:
-d = {'a': {'b': {'c': {'d': {'e': 4}}}}}
+d = {"a": {"b": {"c": {"d": {"e": 4}}}}}
 
-print(pluck(d, 'a.b.c.d'))
+print(pluck(d, "a.b.c.d"))
 
 # TEST_7:
-d = {'a': {'b': {'c': {'d': {'e': 4}}}}}
+d = {"a": {"b": {"c": {"d": {"e": 4}}}}}
 
-print(pluck(d, 'a.b.c.d.e'))
+print(pluck(d, "a.b.c.d.e"))
 
 # TEST_8:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'c.d'))
+print(pluck(d, "c.d"))
 
 # TEST_9:
-d = {'a': {'b': 5, 'z': 20}, 'c': {'d': 3}, 'x': 40}
+d = {"a": {"b": 5, "z": 20}, "c": {"d": 3}, "x": 40}
 
-print(pluck(d, 'z', 0))
+print(pluck(d, "z", 0))
 
 # TEST_10:
-d = {'firstname': 'Тимур', 'lastname': 'Гуев', 'birthdate': {'day': 10, 'month': 'October', 'year': 1993},
-     'address': {'streetaddress': 'Часовая 25, кв. 127',
-                 'city': {'region': 'Московская область', 'type': 'город', 'cityname': 'Москва'},
-                 'postalcode': '125315'}}
+d = {
+    "firstname": "Тимур",
+    "lastname": "Гуев",
+    "birthdate": {"day": 10, "month": "October", "year": 1993},
+    "address": {
+        "streetaddress": "Часовая 25, кв. 127",
+        "city": {
+            "region": "Московская область",
+            "type": "город",
+            "cityname": "Москва",
+        },
+        "postalcode": "125315",
+    },
+}
 
-print(pluck(d, 'birthdate.weekday', default='Not found'))
+print(pluck(d, "birthdate.weekday", default="Not found"))
