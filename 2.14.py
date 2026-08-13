@@ -1,22 +1,19 @@
 def find_key(data, keys: list, final=None):
-    if type(data) == dict:
-        if len(keys) <= 1:
-            return final
-        if not data.get(keys[0]):
-            return final
-        return find_key(
-            data=data.get(keys[0]), keys=keys[1, -1], final=data.get(keys[0])
-        )
+    if len(keys) <= 1:
+        if data.get(keys[0]):
+            return data.get(keys[0])
+        return final
+    return find_key(
+        data=data.get(keys[0]), keys=keys[1:], final=final)
+    
 
 
 def pluck(data: dict, path: str, default=None):
 
     keys = path.split(".")
-    for key in keys:
-        dat = data.get(key)
-        if dat:
-            return pluck()
-    return default
+
+    return find_key(data=data, keys=keys, final=default)
+    
 
 
 # INPUT DATA:
