@@ -10,11 +10,64 @@ def recviz(func):
 
 
 
+# INPUT DATA:
+
+# TEST_1:
 @recviz
 def add(a, b):
     return a + b
 
 add(1, b=2)
 
-# -> add(1, b=2)
-# <- 3
+# TEST_2:
+@recviz
+def add(a, b, c, d, e):
+    return (a + b + c) * (d + e)
+
+add('a', b='b', c='c', d=3, e=True)
+
+# TEST_3:
+@recviz
+def fib(n):
+    if n <= 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+        
+fib(4)
+
+# TEST_4:
+@recviz
+def fact(n):
+    if n == 0:
+        return 1
+    else:
+        return n*fact(n-1)
+        
+fact(5)
+
+# TEST_5:
+from functools import lru_cache
+
+
+@lru_cache
+@recviz
+def fib(n):
+    if n <= 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
+fib(7)
+
+# TEST_6:
+@recviz
+def fib(n):
+    if n <= 2:
+        return 1
+    else:
+        return fib(n - 1) + fib(n - 2)
+
+
+fib(7)
