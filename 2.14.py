@@ -3,9 +3,7 @@ def find_key(data, keys: list, final=None):
         if data.get(keys[0]):
             return data.get(keys[0])
         return final
-    return find_key(
-        data=data.get(keys[0]), keys=keys[1:], final=final)
-    
+    return find_key(data=data.get(keys[0]), keys=keys[1:], final=final)
 
 
 def pluck(data: dict, path: str, default=None):
@@ -13,7 +11,6 @@ def pluck(data: dict, path: str, default=None):
     keys = path.split(".")
 
     return find_key(data=data, keys=keys, final=default)
-    
 
 
 # INPUT DATA:
