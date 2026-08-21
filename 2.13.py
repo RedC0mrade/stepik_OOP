@@ -5,9 +5,10 @@ def annual_return(
 ):
 
     for _ in range(years):
-       deposit = deposit * (100 + persent) / 100
-       yield deposit
-    
+        deposit = deposit * (100 + persent) / 100
+        yield deposit
+
+
 for value in annual_return(120000, 10, 3):
     print(round(value))
 
