@@ -1,9 +1,12 @@
 def recviz(func):
-    print("->")
 
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        print(f"вызов {func.__name__}() с аргументами: {args}, {kwargs}")
+        a = [arg for args]
+
+
+        # print(*[f"{key}='{values}'" for key, values in kwargs.items()])
+        print(f"-> {func.__name__}({*[arg for args]}, )")
         print(f"TRACE: возвращаемое значение {func.__name__}(): {repr(result)}")
 
     return wrapper
@@ -21,61 +24,61 @@ def add(a, b):
 add(1, b=2)
 
 
-# TEST_2:
-@recviz
-def add(a, b, c, d, e):
-    return (a + b + c) * (d + e)
+# # TEST_2:
+# @recviz
+# def add(a, b, c, d, e):
+#     return (a + b + c) * (d + e)
 
 
-add("a", b="b", c="c", d=3, e=True)
+# add("a", b="b", c="c", d=3, e=True)
 
 
-# TEST_3:
-@recviz
-def fib(n):
-    if n <= 2:
-        return 1
-    else:
-        return fib(n - 1) + fib(n - 2)
+# # TEST_3:
+# @recviz
+# def fib(n):
+#     if n <= 2:
+#         return 1
+#     else:
+#         return fib(n - 1) + fib(n - 2)
 
 
-fib(4)
+# fib(4)
 
 
-# TEST_4:
-@recviz
-def fact(n):
-    if n == 0:
-        return 1
-    else:
-        return n * fact(n - 1)
+# # TEST_4:
+# @recviz
+# def fact(n):
+#     if n == 0:
+#         return 1
+#     else:
+#         return n * fact(n - 1)
 
 
-fact(5)
+# fact(5)
 
-# TEST_5:
-from functools import lru_cache
-
-
-@lru_cache
-@recviz
-def fib(n):
-    if n <= 2:
-        return 1
-    else:
-        return fib(n - 1) + fib(n - 2)
+# # TEST_5:
+# from functools import lru_cache
 
 
-fib(7)
+# @lru_cache
+# @recviz
+# def fib(n):
+#     if n <= 2:
+#         return 1
+#     else:
+#         return fib(n - 1) + fib(n - 2)
 
 
-# TEST_6:
-@recviz
-def fib(n):
-    if n <= 2:
-        return 1
-    else:
-        return fib(n - 1) + fib(n - 2)
+# fib(7)
 
 
-fib(7)
+# # TEST_6:
+# @recviz
+# def fib(n):
+#     if n <= 2:
+#         return 1
+#     else:
+#         return fib(n - 1) + fib(n - 2)
+
+
+# fib(7)
