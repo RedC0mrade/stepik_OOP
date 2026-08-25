@@ -2,12 +2,18 @@ def recviz(func):
 
     def wrapper(*args, **kwargs):
         result = func(*args, **kwargs)
-        a = [arg for args]
-
-
-        # print(*[f"{key}='{values}'" for key, values in kwargs.items()])
-        print(f"-> {func.__name__}({*[arg for args]}, )")
-        print(f"TRACE: возвращаемое значение {func.__name__}(): {repr(result)}")
+        a = [
+            (
+                str(key) + "=" + "'" + values + "'"
+                if isinstance(values, str)
+                else str(key) + "=" + str(values)
+            )
+            for key, values in kwargs.items()
+        ]
+        print(
+            f"-> {func.__name__}({', '.join(["'" + str(arg) + "'" for arg in args] + a)})"
+        )
+        print(f"<- {repr(result)}")
 
     return wrapper
 
@@ -15,22 +21,27 @@ def recviz(func):
 # INPUT DATA:
 
 
-# TEST_1:
+# # TEST_1:
+# @recviz
+# def add(a, b):
+#     return a + b
+
+
+# add(1, b=2)
+
+
+# TEST_2:
 @recviz
-def add(a, b):
-    return a + b
+def add(a, b, c, d, e):
+    return (a + b + c) * (d + e)
 
 
-add(1, b=2)
+add("a", "b", c="c", d=3, e=True)
 
 
 # # TEST_2:
-# @recviz
-# def add(a, b, c, d, e):
-#     return (a + b + c) * (d + e)
-
-
-# add("a", b="b", c="c", d=3, e=True)
+# -> add('a', b='b', c='c', d=3, e=True)
+# <- 'abcabcabcabc'
 
 
 # # TEST_3:
