@@ -1,6 +1,6 @@
 import sys
 
-pokemons: dict[str: int] = dict()
+pokemons: dict[str:int] = dict()
 
 for i in sys.stdin:
     key = i.strip()

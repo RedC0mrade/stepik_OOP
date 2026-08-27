@@ -1,5 +1,5 @@
 number = int(input())
-matrix = [[0]*number for _ in range(number)]
+matrix = [[0] * number for _ in range(number)]
 flag_up = 0
 flag_down = number + 1
 for i in range(number):
@@ -13,6 +13,6 @@ for i in range(number):
             matrix[i][j] = number - j
         elif i >= j and i >= number - j - 1:
             matrix[i][j] = number - i
-    
+
 for i in matrix:
-    print(*i, sep=' ')
+    print(*i, sep=" ")
