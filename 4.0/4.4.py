@@ -1,6 +1,6 @@
 class User:
 
-    def __init__(self, name: str, friends:int = 0):
+    def __init__(self, name: str, friends: int = 0):
 
         self.name = name
         self.friends = friends
@@ -9,12 +9,12 @@ class User:
         self.friends += n
 
 
-user = User('Arthur')
+user = User("Arthur")
 
 print(user.friends)
 
 
-user = User('Timur')
+user = User("Timur")
 
 user.add_friends(2)
 user.add_friends(2)
