@@ -1,2 +1,5 @@
-n = ["aaa", "ssss", "ddddd", "ddddd"]
-print(list(filter(lambda x: len(x) == max(map(len, n)), n)))
+a = [2]
+
+b = [2, 3]
+
+print(set(a).issubset(set(b)))
