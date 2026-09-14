@@ -5,9 +5,8 @@ class Wordplay:
 
     def __init__(self, words=None):
 
-        self.words = words
-        if not self.words:
-            self.words = list()
+        self.words = deepcopy(words) if words else list()
+
 
     def add_word(self, word: str):
 
@@ -17,62 +16,67 @@ class Wordplay:
     def words_with_length(self, n: int):
         return list(filter(lambda x: len(x) == n, self.words))
 
+
     def only(self, *args):
 
         new = list()
-        for i in args:
-            for word in self.words:
-                if i in word and word not in new:
-                    new.append(word)
+        for word in self.words:
+            if set(word).issubset(set(args)):
+                new.append(word)
         return new
+
 
     def avoid(self, *args):
 
-        new_words = deepcopy(self.words)
+        new = list()
+        for word in self.words:
+            if set(word).isdisjoint(set(args)):
+                new.append(word)
+        return new
 
-        return list(filter(lambda x: x not in self.only(*args), new_words))
 
 
-# TEST_1:
-wordplay = Wordplay()
 
-print(wordplay.words_with_length(1))
-print(wordplay.only('a', 'b', 'c'))
-print(wordplay.avoid('a', 'b', 'c'))
+# # TEST_1:
+# wordplay = Wordplay()
 
-# TEST_2:
-wordplay = Wordplay()
+# print(wordplay.words_with_length(1))
+# print(wordplay.only('a', 'b', 'c'))
+# print(wordplay.avoid('a', 'b', 'c'))
 
-print(wordplay.words)
-wordplay.add_word('bee')
-wordplay.add_word('geek')
-print(wordplay.words)
+# # TEST_2:
+# wordplay = Wordplay()
 
-# TEST_3:
-wordplay = Wordplay(['bee', 'geek', 'cool', 'stepik'])
+# print(wordplay.words)
+# wordplay.add_word('bee')
+# wordplay.add_word('geek')
+# print(wordplay.words)
 
-wordplay.add_word('python')
-print(wordplay.words_with_length(4))
+# # TEST_3:
+# wordplay = Wordplay(['bee', 'geek', 'cool', 'stepik'])
 
-# TEST_4:
-wordplay = Wordplay(['o', 'to', 'otto', 'top', 't'])
+# wordplay.add_word('python')
+# print(wordplay.words_with_length(4))
 
-print(wordplay.only('o', 't'))
+# # TEST_4:
+# wordplay = Wordplay(['o', 'to', 'otto', 'top', 't'])
 
-# TEST_5:
-wordplay = Wordplay(['a', 'arthur', 'timur', 'bee', 'geek', 'python', 'stepik'])
+# print(wordplay.only('o', 't'))
 
-print(wordplay.avoid('a', 'b', 'c'))
+# # TEST_5:
+# wordplay = Wordplay(['a', 'arthur', 'timur', 'bee', 'geek', 'python', 'stepik'])
 
-# TEST_6:
-wordplay = Wordplay()
-print(wordplay.words)
+# print(wordplay.avoid('a', 'b', 'c'))
 
-# TEST_7:
-wordplay = Wordplay(['Тьюринг', 'Торвальдс', 'Россум', 'Гейтс', 'Гамильтон', 'Бэкус', 'Кнут'])
+# # TEST_6:
+# wordplay = Wordplay()
+# print(wordplay.words)
 
-print(wordplay.words_with_length(6))
-print(wordplay.avoid('ь'))
+# # TEST_7:
+# wordplay = Wordplay(['Тьюринг', 'Торвальдс', 'Россум', 'Гейтс', 'Гамильтон', 'Бэкус', 'Кнут'])
+
+# print(wordplay.words_with_length(6))
+# print(wordplay.avoid('ь'))
 
 # TEST_8:
 words = ['Лейбниц', 'Бэббидж', 'Нейман', 'Джобс', 'да_Винчи', 'Касперский']
@@ -82,11 +86,11 @@ words.extend(['Гуев', 'Харисов', 'Светкин'])
 print(words)
 print(wordplay.words)
 
-# TEST_9:
-wordplay = Wordplay(['a', 'arthur', 'timur', 'bee', 'geek', 'python', 'stepik'])
+# # TEST_9:
+# wordplay = Wordplay(['a', 'arthur', 'timur', 'bee', 'geek', 'python', 'stepik'])
 
-print(wordplay.words)
-wordplay.add_word('stepik')
-wordplay.add_word('bee')
-wordplay.add_word('geek')
-print(wordplay.words)
+# print(wordplay.words)
+# wordplay.add_word('stepik')
+# wordplay.add_word('bee')
+# wordplay.add_word('geek')
+# print(wordplay.words)

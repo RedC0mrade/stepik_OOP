@@ -1,5 +1,6 @@
-a = [2]
+a = ['o', 'to', 'otto', 'top', 't']
 
-b = [2, 3]
+b = ['o', 't']
 
-print(set(a).issubset(set(b)))
+for i in a:
+    print(set(i).isdisjoint(set(b)))
