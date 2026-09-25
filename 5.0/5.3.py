@@ -2,11 +2,19 @@ class User:
 
     def __init__(self, name: str, age: int):
 
-        if isinstance(name, str) and not name.isalpha():
+        if not isinstance(name, str):
 
             raise ValueError("Некорректное имя")
 
-        if isinstance(age, int) and 0 < age < 110:
+        if not name.isalpha():
+
+            raise ValueError("Некорректное имя")
+
+        if not isinstance(age, int):
+
+            raise ValueError("Некорректный возраст")
+        
+        if 0 > age or age > 110:
 
             raise ValueError("Некорректный возраст")
 
@@ -23,53 +31,62 @@ class User:
 
     def set_name(self, name: str):
 
-        if isinstance(name, str) and not name.isalpha():
+        if not isinstance(name, str):
         
             raise ValueError("Некорректное имя")
-
+        
+        if not name.isalpha():
+        
+            raise ValueError("Некорректное имя")
+        
         self._name = name
 
     def set_age(self, age):
 
-        if not isinstance(age, int) and 0 < age < 110:
+        if not isinstance(age, int):
         
             raise ValueError("Некорректный возраст")
+        
+        if 0 > age or age > 110:
+
+            raise ValueError("Некорректный возраст")
+
+
         self._age = age
 
 
+# INPUT DATA:
 
-# # INPUT DATA:
+# TEST_1:
+user = User('Гвидо', 67)
 
-# # TEST_1:
-# user = User('Гвидо', 67)
+print(user.get_name())
+print(user.get_age())
 
-# print(user.get_name())
-# print(user.get_age())
+# TEST_2:
+user = User('Гвидо', 67)
 
-# # TEST_2:
-# user = User('Гвидо', 67)
+user.set_name('Тимур')
+user.set_age(30)
 
-# user.set_name('Тимур')
-# user.set_age(30)
+print(user.get_name())
+print(user.get_age())
 
-# print(user.get_name())
-# print(user.get_age())
-
-# # TEST_3:
-# user = User('Меган', 37)
-
-# invalid_names = (-1, True, '', [], '123456', 'Меган906090')
-
-# for name in invalid_names:
-#     try:
-#         user.set_name(name)
-#     except ValueError as e:
-#         print(e)
-
-# TEST_4:
+# TEST_3:
 user = User('Меган', 37)
 
-invalid_ages = ('ten', [], '', [True], -1, 111, 136, -50, 18.5)
+invalid_names = (-1, True, '', [], '123456', 'Меган906090')
+
+for name in invalid_names:
+    try:
+        user.set_name(name)
+    except ValueError as e:
+        print(e)
+
+# TEST_4:
+user = User("Меган", 37)
+
+invalid_ages = ("ten", [], "", [True], -1, 111, 136, -50, 18.5)
 for age in invalid_ages:
     try:
         user.set_age(age)
@@ -77,7 +94,7 @@ for age in invalid_ages:
         print(e)
 
 # TEST_5:
-invalid_names = (-1, True, '', [], '123456', 'Меган906090')
+invalid_names = (-1, True, "", [], "123456", "Меган906090")
 
 for name in invalid_names:
     try:
@@ -86,15 +103,15 @@ for name in invalid_names:
         print(e)
 
 # TEST_6:
-invalid_ages = ('ten', [], '', [True], -1, 111, 136, -50)
+invalid_ages = ("ten", [], "", [True], -1, 111, 136, -50)
 for age in invalid_ages:
     try:
-        user = User('Меган', age)
+        user = User("Меган", age)
     except ValueError as e:
         print(e)
 
 # TEST_7:
 try:
-    user = User('Gvido_1956', '67')
+    user = User("Gvido_1956", "67")
 except ValueError as e:
     print(e)
