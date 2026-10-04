@@ -51,6 +51,7 @@ class Rectangle:
 
 # TEST_3:
 rectangle = Rectangle(20, 20)
+print(rectangle.length)
 array = [(39, 48), (64, 36), (80, 56), (79, 60), (47, 30), (26, 27), (47, 69), (77, 22), (28, 78), (33, 75)]
 for length, width in array:
     rectangle.length = length
