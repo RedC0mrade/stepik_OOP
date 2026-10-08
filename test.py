@@ -1,3 +1,3 @@
-n = "asd"
-
-print(isinstance(n, int))
+n = "asd 123"
+b = n.split()
+print(b)
